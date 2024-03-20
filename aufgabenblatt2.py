@@ -1,3 +1,5 @@
+# TODO: Comment the code
+
 def calculateBiggestSumOfThreeNumbers(a:int, b:int, c:int):
     numbersList = [a, b ,c]
     numbersList.sort()

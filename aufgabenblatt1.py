@@ -1,5 +1,7 @@
 # Aufgabe 1.0
 
+# TODO: Comment the code
+
 import sys
 
 # Maximale Integer-Zahlelänge auf 1000000 setzen, weil sonst ab berechnung von
