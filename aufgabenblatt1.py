@@ -44,19 +44,20 @@ def calculate_solution_k():
     secondNumber = numberList[2000]
     return (firstNumber == "1" or firstNumber == "3") and (secondNumber == "1" or secondNumber == "3")
 
-def calculate_solution_l(i:int):
-    return (2 + 5 * i) ** (-1 + 2 * i)
+def calculate_solution_l():
+    print(complex(2,5))
+    print(complex(-1,2)) 
+    return complex(2,5) ** complex(-1,2)
 
 def calculate_solution_m(i:int):
-    return i**i
+    return complex(i) ** complex(i)
 
 def calculate_solution_n():
     # Wurzel ziehen und mit Modulo 1 prüfen ob das Ergebnis eine ganze Zahl ist
     return ((345744 ** 0.5) % 1) == 0
 
 if __name__ == "__main__":
-    print(calculate_solution_n())
-    i = 1
-    print(type(i))
+    print(calculate_solution_e())
+    print(complex())
     nums = [1, 2, 3, 4, 5]
     print(nums[-1])

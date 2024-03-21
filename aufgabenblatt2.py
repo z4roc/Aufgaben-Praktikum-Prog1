@@ -39,7 +39,7 @@ def isWordAnagram(word1:str, word2:str):
 if __name__ == "__main__":
     print(calculateBiggestSumOfThreeNumbers(1,2,3))
     print(isStringPalindrom("Otto"))
-    print(getLongestWordOfSentence("Ich mag meinen Staubsauger sehr gerne"))
+    print(getLongestWordOfSentence("Ich muss heute eine Waschmaschine kaufen."))
     #print(doesInputContainLetterA())
     print(isWordAnagram("Betrug", "Erbgut"))
 
