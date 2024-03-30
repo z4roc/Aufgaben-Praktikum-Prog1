@@ -13,6 +13,7 @@ def scheresteinpapier():
         if user_input not in options:
             print("Falsche Eingabe")
             return
+        
         computer_input = options[randint(0, 2)]
         print(f"Computer: {computer_input}")
 
@@ -105,7 +106,7 @@ def workWithDict(d:dict):
 
     keys = d.keys()
     #Aufgabe 3.3 b)
-    print(f"Schlüssel enthält Hallo {keys.__contains__("Hallo")}")
+    print(keys.__contains__("Hallo"))
 
     #Aufgabe 3.3 c)
 

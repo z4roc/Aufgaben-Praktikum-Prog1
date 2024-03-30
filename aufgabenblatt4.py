@@ -1,4 +1,7 @@
-def umrechnenTemperatur(termperatur:str):
+import matplotlib.pyplot as plt
+
+# Aufgabe 4.0
+def umrechnenTemperatur(termperatur:str) -> dict:
     einheiten = ["C", "F", "K"]
     tempurEinheit = termperatur[-1]
     temperaturenDictionary = {"C": 0, "F": 0, "K": 0}
@@ -23,19 +26,59 @@ def umrechnenTemperatur(termperatur:str):
 
     return temperaturenDictionary
 
-def istZahlPrimzahl(n:int):
+# Aufgabe 4.1
+def istZahlPrimzahl(n:int) -> bool:
     # nicht nötig wegen typesafe Parameter aber trotzdem:
     if type(n) is not int:
         raise Exception("Falsche Eingabe")
     
-    return n > 1 and all(n % i is not 0 for i in range(2, n))
+    return n > 1 and all(n % i != 0 for i in range(2, n))
 
+# Aufgabe 4.2
+def findeZwillingsprimzahlen() -> tuple:
+    primzahlen = [i for i in range(2, 10000) if istZahlPrimzahl(i)]
+
+    print(primzahlen)
+    zwillingsPrimzahlen = [i for i in primzahlen if i + 2 in primzahlen]
+    zwillingsPrimzahlenManuell = []
+    for i in primzahlen:
+        if i + 2 in primzahlen:
+            zwillingsPrimzahlenManuell.append((i, i + 2))
+
+    return len(zwillingsPrimzahlen), len(zwillingsPrimzahlenManuell)
+
+def erstelleStreudiagramm_4_a():
+    plt.scatter([i for i in range(1,10)], [i for i in range(1,10)]);
+    plt.show()
+
+def erstelleStreudiagramm_4_b():
+    plt.scatter([-i for i in range(1,10)], [i for i in range(1,10)])
+    plt.show()
+
+def erstelleStreudiagramm_4_c():
+    #plt.scatter([i for i in range(1,10)], [i for i in range(1,10)]);
+    #plt.scatter([-i for i in range(1,10)], [i for i in range(1,10)])
+    #plt.scatter([i for i in range(-20,20)], [i for i in range(20,-20, -1)])
+   
+    # Werte für jede Achse erzeugen
+    x = [i for i in range(-10, 10)]
+    y = [10 for i in range(-10, 10)]
+
+    x += [i for i in range(-10, 10)]
+    y += [-10 for i in range(-10, 10)]
+
+    x += [-10 for i in range(-10, 10)]
+    y += [i for i in range(-10, 10)]
+
+    x += [10 for i in range(-10, 10)]
+    y += [i for i in range(-10, 10)]
+
+    y+= [10]
+    x+= [10]
+
+    plt.scatter(x, y)
+    plt.show()
 
 if __name__ == "__main__":
-    print(umrechnenTemperatur("0C"))
-    print(umrechnenTemperatur("0F"))
-    print(umrechnenTemperatur("0K"))
-
-    primzahlen = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
-    for i in primzahlen:
-        print(istZahlPrimzahl(i))
+    #print(findeZwillingsprimzahlen())
+    erstelleStreudiagramm_4_c()

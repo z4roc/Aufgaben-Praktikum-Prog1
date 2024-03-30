@@ -4,7 +4,7 @@
 
 import sys
 
-# Maximale Integer-Zahlelänge auf 1000000 setzen, weil sonst ab berechnung von
+# Maximale Integer-Zahlelänge auf 1000000 setzen, weil sonst ab Berechnung von
 # Aufgabe E ein Fehler auftritt, da die Zahl zu lang ist
 sys.set_int_max_str_digits(1000000)
 
@@ -47,17 +47,24 @@ def calculate_solution_k():
 def calculate_solution_l():
     print(complex(2,5))
     print(complex(-1,2)) 
-    return complex(2,5) ** complex(-1,2)
+    #return complex(2,5) ** complex(-1,2)
+    return 2+5j ** -1+2j
 
 def calculate_solution_m(i:int):
-    return complex(i) ** complex(i)
+    return 1j**1j
 
 def calculate_solution_n():
     # Wurzel ziehen und mit Modulo 1 prüfen ob das Ergebnis eine ganze Zahl ist
     return ((345744 ** 0.5) % 1) == 0
 
 if __name__ == "__main__":
-    print(calculate_solution_e())
-    print(complex())
-    nums = [1, 2, 3, 4, 5]
-    print(nums[-1])
+    print(calculate_solution_n())
+
+
+# Aufgabe 1.1
+    
+# a) str, list, tuple
+# b) list, dict
+# c) list[-1] index -1 => letztes Element
+# d) type(variable) => type Methode gibt typ zurück
+# e) return => gibt Wert zurück oder springt aus Methode frühzeitig raus, print() gibt Wert in der Konsole aus
