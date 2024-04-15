@@ -27,13 +27,22 @@ class AufgabenManager:
     def erledigeAufgabe(self) -> str:
         # output tuple? 
         # highestPrioItem = list(filter(lambda x: x[1] == self.hoechstePrioritaet(), self.aufgaben.items()))
-
         highestPrioItem = max(self.aufgaben.items(), key=lambda x: x[1])
         self.aufgaben.pop(highestPrioItem[0])
-        
         return highestPrioItem[0]
-
-
+    
+    def alleAufgabenMitPrio(self, prio:int) -> dict:
+        return list({k:v for k, v in self.aufgaben.items() if v == prio}.keys())
+    
+    def allePrios(self) -> list:
+        return list(self.aufgaben.values())
+    
+    def anzahlAufgabenPrio(self, prio:int) -> int:
+        return len(list(filter(lambda x: x == prio, self.aufgaben.values())))
+    
+    def anzahlAufgaben(self) -> int:
+        return len(self.aufgaben)
+    
 if __name__ == "__main__":
     s = Stack()
     s.push(0)
@@ -54,6 +63,12 @@ if __name__ == "__main__":
     am.neueAufgabe("Aufgabe 2", 2)
     am.neueAufgabe("Aufgabe 5", 1)
 
-    print(am.hoechstePrioritaet())
-    print(am.erledigeAufgabe())
-    print(am.aufgaben)
+
+    print(am.alleAufgabenMitPrio(1))
+
+    print(am.allePrios())
+    print(am.anzahlAufgabenPrio(1))
+    print(am.anzahlAufgaben())
+    # print(am.hoechstePrioritaet())
+    # print(am.erledigeAufgabe())
+    # print(am.aufgaben)
