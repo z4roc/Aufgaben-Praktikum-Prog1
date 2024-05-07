@@ -60,6 +60,8 @@ def ratespiel(n:int):
             print("Zu niedrig")
         else:
             print("Zu hoch")
+
+    return anzahlVersuche
 #Aufgabe 3.2
 def erzeugeListeKleinbuchstaben():
     alphabet = "abcdefghijklmnopqrstuvwxyz"
@@ -102,12 +104,15 @@ def erzeugeListeKleinbuchstaben():
 def workWithDict(d:dict):
 
     # Aufgabe 3.3 a)
+    # len(d)
     print(len(d.items()))
 
     keys = d.keys()
     #Aufgabe 3.3 b)
     print(keys.__contains__("Hallo"))
-
+    
+    # ist das gleiche und der korrekte Weg
+    print("Hallo" in d)
     #Aufgabe 3.3 c)
 
     keys = list(keys)

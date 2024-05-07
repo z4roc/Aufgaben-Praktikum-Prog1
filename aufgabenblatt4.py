@@ -28,7 +28,6 @@ def umrechnenTemperatur(termperatur:str) -> dict:
 
 # Aufgabe 4.1
 def istZahlPrimzahl(n:int) -> bool:
-    # nicht nötig wegen typesafe Parameter aber trotzdem:
     if type(n) is not int:
         raise Exception("Falsche Eingabe")
     
@@ -38,8 +37,12 @@ def istZahlPrimzahl(n:int) -> bool:
 def findeZwillingsprimzahlen() -> tuple:
     primzahlen = [i for i in range(2, 10000) if istZahlPrimzahl(i)]
 
+ 
+
+
     print(primzahlen)
     zwillingsPrimzahlen = [i for i in primzahlen if i + 2 in primzahlen]
+
     zwillingsPrimzahlenManuell = []
     for i in primzahlen:
         if i + 2 in primzahlen:
@@ -48,11 +51,11 @@ def findeZwillingsprimzahlen() -> tuple:
     return len(zwillingsPrimzahlen), len(zwillingsPrimzahlenManuell)
 
 def erstelleStreudiagramm_4_a():
-    plt.scatter([i for i in range(1,10)], [i for i in range(1,10)]);
+    plt.scatter(range(10), range(10));
     plt.show()
 
 def erstelleStreudiagramm_4_b():
-    plt.scatter([-i for i in range(1,10)], [i for i in range(1,10)])
+    plt.scatter(range(20)[::-1],range(20))
     plt.show()
 
 def erstelleStreudiagramm_4_c():
@@ -81,4 +84,4 @@ def erstelleStreudiagramm_4_c():
 
 if __name__ == "__main__":
     #print(findeZwillingsprimzahlen())
-    erstelleStreudiagramm_4_c()
+    erstelleStreudiagramm_4_b()

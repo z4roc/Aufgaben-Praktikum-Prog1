@@ -4,37 +4,40 @@ from os import listdir
 from os.path import isfile, join
 import re
 
-def saveperson(n:str, v:str, a:int, g:int):
-    file = open("./FilesA5/namensliste.json", "r")
+def saveperson(n:str, v:str, a:int, g:int) -> None:
+    file1 = open("./FilesA5/namensliste.json", "r")
 
-    fileContent = file.read()
+    fileContent = file1.read()
     namensliste = []
-    print(len(fileContent))
+    # print(len(fileContent))
     if len(fileContent) > 1:
         namensliste = json.loads(fileContent)
 
     assert type(n) is str and type(v) is str and type(a) is int and type(g) is int
 
-    namensliste += [{"nachname": n, "vorname": v, "alter": a, "groeße": g}]
+    namensliste = [{"nachname": n, "vorname": v, "alter": a, "groeße": g}, *namensliste]
 
-    file.close()
+    file1.close()
 
-    with open("FilesA5/namensliste.json", "w") as file:
-        json.dump(namensliste, file)
-        file.close()
+    with open("FilesA5/namensliste.json", "w") as file2:
+        json.dump(namensliste, file2)
+        file2.close()
 
 def findperson(n:str):
     assert type(n) is str
-    
-    with open("FilesA5/namensliste.json", "r") as file:
-        filecontent = file.read()
+    person = {}
+    with open("FilesA5/namensliste.json", "r") as file1:
+        filecontent = file1.read()
 
         persons = json.loads(filecontent)
 
         for p in persons:
             if n in p["vorname"] or n in p["nachname"]:
                 print(p)
-        file.close()
+                person = p
+        file1.close()
+
+    return person
 
 def removeperson(n):
     assert type(n) is str
@@ -49,18 +52,18 @@ def removeperson(n):
 
     fileReader.close()
 
-    with open("FilesA5/namensliste.json", "w") as file:
-        json.dump(persons, file)
-        file.close()
+    with open("FilesA5/namensliste.json", "w") as file1:
+        json.dump(persons, file1)
+        file1.close()
 
 def findFile(directory:str, fileName:str):
     assert type(directory) is str and type(fileName) is str
     try:
         files = [f for f in listdir(directory) if isfile(join(directory, f))]
 
-        for file in files:
-            if re.search(fileName, file):
-                print(file)
+        for file1 in files:
+            if re.search(fileName, file1):
+                print(file1)
 
     except FileNotFoundError:
         print("Directory not found")
@@ -74,10 +77,11 @@ class MyComp12:
         return f"{self.a} + {(self.b) * 1j}"
 
     def __add__(self, other):
-        return f"{self.a + other.a} + {(self.b + other.b) * 1j}"
+        return MyComp12(self.a + other.a, self.b + other.b)
     
     def __mul__(self, other):
-        return f"{self.a * other.a} + {(self.b * other.b) * 1j}"
+        # (a * c - bd) -> realteil * (a * d + bc)j -> imaginärteil
+        return MyComp12(self.a * other.a - self.b * other.b, self.a * other.b + self.b * other.a)
     
 if __name__ == "__main__":
     print("Aufgabenblatt 5")
@@ -92,6 +96,8 @@ if __name__ == "__main__":
 
     print(c1 + c2)
     print(c1 * c2)
+
+    
 
 
 
