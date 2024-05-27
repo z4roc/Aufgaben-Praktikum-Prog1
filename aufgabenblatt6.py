@@ -19,26 +19,30 @@ class AufgabenManager:
         self.aufgaben = {}
 
     def neueAufgabe(self, aufgabe:str, prioritaet:int) -> None:
-        self.aufgaben[aufgabe] = prioritaet
+        if prioritaet not in self.aufgaben:
+            self.aufgaben[prioritaet] = Stack()
+        self.aufgaben[prioritaet].push(aufgabe)
 
     def hoechstePrioritaet(self) -> str:
-        return max(self.aufgaben.values())
+        return max(self.aufgaben.keys())
 
     def erledigeAufgabe(self) -> str:
         # output tuple? 
         # highestPrioItem = list(filter(lambda x: x[1] == self.hoechstePrioritaet(), self.aufgaben.items()))
-        highestPrioItem = max(self.aufgaben.items(), key=lambda x: x[1])
-        self.aufgaben.pop(highestPrioItem[0])
-        return highestPrioItem[0]
+        highestPrioItem = self.hoechstePrioritaet()
+        aufgabe = self.aufgaben[highestPrioItem].pop()
+        if len(self.aufgaben[highestPrioItem].toList()) == 0:
+            del self.aufgaben[highestPrioItem]
+        return aufgabe
     
-    def alleAufgabenMitPrio(self, prio:int) -> dict:
-        return list({k:v for k, v in self.aufgaben.items() if v == prio}.keys())
+    def alleAufgabenMitPrio(self, prio:int) -> list:
+        return self.aufgaben[prio].toList()
     
     def allePrios(self) -> list:
-        return list(self.aufgaben.values())
+        return list(self.aufgaben.keys())
     
     def anzahlAufgabenPrio(self, prio:int) -> int:
-        return len(list(filter(lambda x: x == prio, self.aufgaben.values())))
+        return len(self.aufgaben[prio].toList())
     
     def anzahlAufgaben(self) -> int:
         return len(self.aufgaben)

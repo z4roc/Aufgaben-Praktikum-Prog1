@@ -7,7 +7,7 @@ os.chdir("./FilesA10")
 
 def cleanupList(liste):
     return functools.reduce(lambda x, y: x + y, liste)
-
+# Ohne MAX
 def maxListSize(liste):
     return functools.reduce(lambda x, y: max(str(x), str(y)), liste)
 

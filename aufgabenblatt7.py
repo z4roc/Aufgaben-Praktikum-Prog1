@@ -71,21 +71,23 @@ class Cntr:
 
         return largestKey
         
-    def __add__ (self, other) -> dict:
+    def __add__ (self, other) -> any:
+        nctr = Cntr("")
         for k in self.cntr.keys():
             for k2 in other.cntr.keys():
                 if k is k2:
-                    self.cntr[k] += other.cntr[k2]
+                    nctr.cntr[k] =  self.cntr[k] + other.cntr[k2]
 
-        return self.cntr
+        return nctr
 
-    def __mul__ (self, other) -> dict:
+    def __mul__ (self, other) -> any:
+        nctr = Cntr("")
         for k in self.cntr.keys():
             for k2 in other.cntr.keys():
                 if k is k2:
-                    self.cntr[k] *= other.cntr[k2]
+                    nctr.cntr[k] = self.cntr[k] * other.cntr[k2]
 
-        return self.cntr
+        return nctr
 
 
 if __name__ == "__main__":
@@ -102,11 +104,10 @@ if __name__ == "__main__":
 
     c = Cntr("Hello World!")
     c2 = Cntr("Hallo Welt!")
-    c.__repr__()
     print(c.most())
     
-    #print(c + c2)
+    print((c + c2).__repr__())
     
-    print(c * c2)
+    print((c * c2).__repr__())
 
 
